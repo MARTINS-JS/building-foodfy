@@ -1,3 +1,4 @@
+const body = document.querySelector('body')
 const links = document.querySelectorAll('.links a')
 const cards = document.querySelectorAll('.card')
 const modalOverlay = document.querySelector('.modal-overlay')
@@ -15,14 +16,19 @@ for (let card of cards) {
   const author = card.querySelector('.card_content_author').textContent
 
   card.addEventListener('click', function() {
+    body.classList.add('no-overflow')
+
     modal.querySelector('.modal_cover_image').src = image
     modal.querySelector('.modal_content_title').textContent = title
     modal.querySelector('.modal_content_author').textContent = author
+    
     modalOverlay.classList.add('active')
   })
 }
 
 modalOverlay.querySelector('.close_modal').addEventListener('click', function() {
+  body.classList.remove('no-overflow')
+
   modal.querySelector('.modal_cover_image').src = ''
   modal.querySelector('.modal_content_title').textContent = ''
   modal.querySelector('.modal_content_author').textContent = ''
